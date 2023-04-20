@@ -67,10 +67,12 @@ const createUser = async (req, res,next) => {
 const login = async (req, res,next) => {
     try {
 
+        const validResult = await accountValidSchemaLogin.validateAsync(req.body);
+
         /**
          * Read Record
          */
-        const encodedEmail = Buffer.from(req.body.email).toString('base64');
+        const encodedEmail = Buffer.from(validResult.email).toString('base64');
         const userPath = `Users/${encodedEmail}`;
         const userData = await readRecord(userPath);
 
@@ -83,7 +85,7 @@ const login = async (req, res,next) => {
         /**
          * Validate data
          */
-        if (!compareSync(req.body.password, userData.password)) {
+        if (!compareSync(validResult.password, userData.password)) {
             throw new createError[401](
                 "Incorrect Password"
             );
