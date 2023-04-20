@@ -33,11 +33,9 @@ app.use(errorHandler)
  */
 app.use(ACCOUNT_ROUTER,accountRouter)
 
-
-app.get('/', (req, res) => {
-  res.send('Hello World!')
-})
-
+/**
+ * Listen on defined port
+ */
 app.listen(port, () => {
   console.log(`Users' Server listening on port ${port}`)
 })

@@ -1,6 +1,4 @@
-/**
- * Important requires
- */
+// Important requires
 const { initializeApp } = require("firebase/app");
 const { getDatabase } = require("firebase/database");
 

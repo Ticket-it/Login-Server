@@ -1,3 +1,4 @@
+// Important requires
 const { database } = require("../config/firebaseConfig");
 const { ref, set, get, update, remove } = require("firebase/database");
 
