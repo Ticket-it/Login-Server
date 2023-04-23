@@ -8,8 +8,6 @@ const accountValidSchemaRegister = Joi.object({
   email: Joi.string().email().trim().lowercase().required(),
   password: Joi.string().min(8).max(15).required(),
   fullName: Joi.string().trim().required(),
-  birthDate: Joi.string().pattern(/^([0-2][1-9]|[1-3]0|31)-(0[1-9]|1[0-2])-\d{4}$/).required(),
-  gender: Joi.string().trim().required(),
   mobileNo: Joi.string().pattern(/^01\d{9}$/).required(),
 });
 

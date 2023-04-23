@@ -39,8 +39,6 @@ const createUser = async (req, res,next) => {
             email: validResult.email,
             password: hashSync(validResult.password, 10),
             fullName: validResult.fullName,
-            birthDate: validResult.birthDate,
-            gender: validResult.gender,
             mobileNo: validResult.mobileNo,
             type: "user"
         };
@@ -93,7 +91,7 @@ const login = async (req, res,next) => {
 
         return res.status(200).send({
             message: "true",
-            email: userData.email,
+            userId: Buffer.from(validResult.email).toString('base64'),
             type: userData.type
         });
         
