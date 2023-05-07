@@ -6,7 +6,9 @@
  * @param {*} next 
  */
 async function errorHandler(err, req, res, next) {
+
     res.status(err.status || 500);
+    console.log("AAAAAAAAAA")
     res.send({
       error: {
         status: err.status || 500,

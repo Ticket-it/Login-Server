@@ -27,9 +27,10 @@ const createUser = async (req, res,next) => {
         const testData = await readRecord(userPath);
 
         if(testData){
-            throw new createError[409](
-                "Error, User email has already been defined"
-            );
+            return res.status(409).json({
+                status: 409,
+                message: "Error, User email has already been defined"
+              });
         }
 
         /**
@@ -49,8 +50,17 @@ const createUser = async (req, res,next) => {
         });
         
     } catch (error) {
-        console.error(error);
-        next(error);
+        //console.log(error)
+        if(error.details[0]){
+            return res.status(400).json({
+                status: 400,
+                message: error.details[0].message
+            });
+        }
+        else{
+            next(error);
+        }
+        
     }
 };
 
