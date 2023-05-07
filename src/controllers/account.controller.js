@@ -85,18 +85,21 @@ const login = async (req, res,next) => {
         const userData = await readRecord(userPath);
 
         if(!userData){
-            throw new createError[404](
-                "Error, No such an email exists"
-            );
+
+            return res.status(404).json({
+                status: 404,
+                message: "Error, No such an email exists"
+              });
         }
 
         /**
          * Validate data
          */
         if (!compareSync(validResult.password, userData.password)) {
-            throw new createError[401](
-                "Incorrect Password"
-            );
+            return res.status(401).json({
+                status: 401,
+                message: "Error, User email has already been defined"
+              });
         }
 
         return res.status(200).send({
@@ -106,8 +109,15 @@ const login = async (req, res,next) => {
         });
         
     } catch (error) {
-        console.error(error);
-        next(error);
+        if(error.details[0]){
+            return res.status(400).json({
+                status: 400,
+                message: error.details[0].message
+            });
+        }
+        else{
+            next(error);
+        }
     }
 };
 
