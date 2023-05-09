@@ -105,7 +105,8 @@ const login = async (req, res,next) => {
         return res.status(200).send({
             message: "true",
             userId: Buffer.from(validResult.email).toString('base64'),
-            type: userData.type
+            type: userData.type,
+            name: userData.fullName
         });
         
     } catch (error) {
