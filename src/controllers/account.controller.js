@@ -98,7 +98,7 @@ const login = async (req, res,next) => {
         if (!compareSync(validResult.password, userData.password)) {
             return res.status(401).json({
                 status: 401,
-                message: "Error, User email has already been defined"
+                message: "Error, Passwords does not match"
               });
         }
 
