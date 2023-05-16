@@ -37,5 +37,5 @@ app.use(ACCOUNT_ROUTER,accountRouter)
  * Listen on defined port
  */
 app.listen(port, () => {
-  console.log(`Users' Server listening on port ${port}`)
+  console.log(`Login's Server listening on port ${port}`)
 })
